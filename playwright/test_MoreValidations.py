@@ -13,3 +13,8 @@ def test_UIChecks(page: Page):
     page.on("dialog", lambda dialog: dialog.accept())
     page.get_by_role("button",name = "Confirm").click()
     time.sleep(4)
+
+    #Frames
+    pageFrame = page.frame_locator("#courses-iframe")
+    pageFrame.get_by_role("link", name= "All Access plan").click()
+    expect(pageFrame.locator("body")).to_contain_text("Happy Subscibers")
