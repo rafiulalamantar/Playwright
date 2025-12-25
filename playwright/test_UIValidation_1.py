@@ -28,3 +28,6 @@ def test_childWindowPage(page: Page):
         childPage = newPage_info.value
         text = childPage.locator(".red").text_content()
         print(text)
+        words = text.split("at")
+        email = words[1].split(" ")[0]
+        assert email == "mentor@rahulshteeyacademy.com"
