@@ -29,5 +29,5 @@ def test_childWindowPage(page: Page):
         text = childPage.locator(".red").text_content()
         print(text)
         words = text.split("at")
-        email = words[1].split(" ")[0]
-        assert email == "mentor@rahulshteeyacademy.com"
+        email = words[1].strip().split(" ")[0]
+        assert email == "mentor@rahulshettyacademy.com"
