@@ -25,3 +25,6 @@ class APIUtils:
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_request_context.post("/api/ecom/order/create-order", data=ordersPayload, headers = {"Authorization" : token, "Content-Type" : "application/json"})
         print(response.json())
+        response_body = response.json()
+        orderId = response_body["orders"][0]
+        return orderId
