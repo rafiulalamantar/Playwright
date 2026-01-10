@@ -1,5 +1,11 @@
 from playwright.sync_api import Page
 
+#Use Case
+# Browser → API request
+#       → API request reaches server
+#       → Server returns response
+#       → Browser uses response to generate HTML
+
 
 fakePayloadResponse = {
     "data": [],
