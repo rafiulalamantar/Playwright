@@ -1,4 +1,6 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Playwright
+
+from utils.apiBase import APIUtils
 
 #Use Case
 # Browser → API request
@@ -30,3 +32,19 @@ def test_NetworkOne(page: Page):
 
     order_text = page.locator(".mt-4").text_content()
     print(order_text)
+
+def test_session_storage(playwright : Playwright):
+    api_utils = APIUtils()
+    get_token = api_utils.getToken(playwright)
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+
+    #script to inject token in local storage
+    page.add_init_script(f"""localStorage.setItem('token', '{get_token}')""")
+    page.goto("https://rahulshettyacademy.com/client/")
+
+
+
+
+
