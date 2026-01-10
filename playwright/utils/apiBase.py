@@ -1,6 +1,14 @@
 from playwright.sync_api import Playwright
 
-ordersPayload = {{"orders":[{"country":"British Indian Ocean Territory","productOrderedId":"6960eac0c941646b7a8b3e68"}]}}
+ordersPayload = {
+    "orders": [
+        {
+            "country": "British Indian Ocean Territory",
+            "productOrderedId": "6960eac0c941646b7a8b3e68"
+        }
+    ]
+}
+
 class APIUtils:
 
     def getToken(self, playwright: Playwright):
