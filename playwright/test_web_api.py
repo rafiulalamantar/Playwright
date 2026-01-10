@@ -22,7 +22,7 @@ def test_web_api(playwright: Playwright):
 
     row = page.locator("tr").filter(has_text=orderId)
     row.get_by_role("button", name= "View").click()
-    expect(page.locator(".tagline")).to_contain_text("Thank you for shopping with Us")
+    expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
     context.close()
 
 
