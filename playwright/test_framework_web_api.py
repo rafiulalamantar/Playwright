@@ -11,8 +11,9 @@ def test_web_api(playwright: Playwright):
     page = context.new_page()
 
 #Json file-> util ->access into test
-    with open('credential.json') as f:
+    with open('playwright/data/credential.json') as f:
         test_data = json.load(f)
+        print(test_data)
 
 #create order
     apiUtils = APIUtils()
