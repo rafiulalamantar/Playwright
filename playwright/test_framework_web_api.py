@@ -19,7 +19,7 @@ def test_web_api(playwright: Playwright, user_credentials):
 
 #create order
     apiUtils = APIUtils()
-    orderId= apiUtils.createOrder(playwright)
+    orderId= apiUtils.createOrder(playwright, user_credentials)
 
 
     #Login to the System
