@@ -3,6 +3,7 @@ import json
 import pytest
 from playwright.sync_api import Playwright, expect
 
+from pageObjects.LoginPage import LoginPage
 from utils.apiBase import APIUtils
 
 with open('playwright/data/credential.json') as f:
@@ -23,7 +24,7 @@ def test_web_api(playwright: Playwright, user_credentials):
 
 
     #Login to the System
-    page.goto("https://rahulshettyacademy.com/client/")
+    loginPage = LoginPage(page)
     page.get_by_placeholder("email@example.com").fill(user_credentials["userEmail"])
     page.get_by_placeholder("enter your passsword").fill(user_credentials["userPassword"])
     page.get_by_role('button', name= "Login").click()
