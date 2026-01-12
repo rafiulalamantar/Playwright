@@ -1,10 +1,9 @@
 import json
 
 import pytest
-from playwright.sync_api import Playwright, expect
+from playwright.sync_api import Playwright
 
-from pageObjects.LoginPage import LoginPage
-from pageObjects.DashBoardPage import DashBoardPage
+from pageObjects.login_page import LoginPage
 from utils.apiBase import APIUtils
 
 with open('playwright/data/credential.json') as f:
@@ -14,31 +13,32 @@ with open('playwright/data/credential.json') as f:
 
 
 @pytest.mark.parametrize('user_credentials', userCredentials_list)
-
 def test_web_api(playwright: Playwright, user_credentials):
-
-    userEmail = user_credentials["userName"]
+    user_email = user_credentials["userEmail"]
     password = user_credentials["userPassword"]
 
+    # Launch browser
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
 
-#create order
-    apiUtils = APIUtils()
-    orderId= apiUtils.createOrder(playwright, user_credentials)
+    # Create order via API
+    api_utils = APIUtils()
+    order_id = api_utils.createOrder(playwright, user_credentials)
 
+    # Login and navigate
+    login_page = LoginPage(page)
+    login_page.navigate()
+    dashboard = login_page.login(user_email, password)
+    order_history_page = dashboard.select_orders_nav_link()
+    order_details_page = order_history_page.select_order(order_id)
 
-    #Login to the System
-    loginPage = LoginPage(page)
-    loginPage.navigate()
-    dashBoardPage=loginPage.login(userEmail, password)
-    dashBoardPage.selectOrdersNavLink()
+    # Verify order
+    order_details_page.verify_order_message()
 
-    row = page.locator("tr").filter(has_text=orderId)
-    row.get_by_role("button", name= "View").click()
-    expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
+    # Close browser
     context.close()
+    browser.close()
 
 
 
