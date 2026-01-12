@@ -1,3 +1,6 @@
+from DashBoardPage import DashBoardPage
+
+
 class LoginPage:
     def __init__(self,page):
         self.page = page
@@ -11,3 +14,5 @@ class LoginPage:
         self.page.get_by_placeholder("email@example.com").fill(userEmail)
         self.page.get_by_placeholder("enter your passsword").fill(userPassword)
         self.page.get_by_role('button', name="Login").click()
+        dashBoardPage = DashBoardPage(self.page)
+        return dashBoardPage

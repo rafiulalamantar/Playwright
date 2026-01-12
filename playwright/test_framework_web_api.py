@@ -4,6 +4,7 @@ import pytest
 from playwright.sync_api import Playwright, expect
 
 from pageObjects.LoginPage import LoginPage
+from pageObjects.DashBoardPage import DashBoardPage
 from utils.apiBase import APIUtils
 
 with open('playwright/data/credential.json') as f:
@@ -31,8 +32,8 @@ def test_web_api(playwright: Playwright, user_credentials):
     #Login to the System
     loginPage = LoginPage(page)
     loginPage.navigate()
-    loginPage.login(userEmail, password)
-    page.get_by_role('button', name= "ORDERS").click()
+    dashBoardPage=loginPage.login(userEmail, password)
+    dashBoardPage.selectOrdersNavLink()
 
     row = page.locator("tr").filter(has_text=orderId)
     row.get_by_role("button", name= "View").click()
