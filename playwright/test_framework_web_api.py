@@ -11,7 +11,7 @@ with open('data/credential.json') as f:
     print(test_data)
     userCredentials_list = test_data['user_credentials']
 
-
+@pytest.mark.smoke
 @pytest.mark.parametrize('user_credentials', userCredentials_list)
 def test_web_api(playwright: Playwright, browserInstance,user_credentials):
     user_email = user_credentials["userEmail"]
