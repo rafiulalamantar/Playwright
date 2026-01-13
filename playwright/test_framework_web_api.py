@@ -18,9 +18,6 @@ def test_web_api(playwright: Playwright, user_credentials):
     password = user_credentials["userPassword"]
 
     # Launch browser
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
 
     # Create order via API
     api_utils = APIUtils()
