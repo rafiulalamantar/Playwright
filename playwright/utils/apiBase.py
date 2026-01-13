@@ -13,9 +13,7 @@ class APIUtils:
 
     def getToken(self, playwright: Playwright):
         api_response_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
-        user_email = "anshika@gmail.com"
-        user_password = "Iamking@000"
-        response = api_response_context.post("/api/ecom/auth/login", data = {"userEmail": user_email, "userPassword": user_password})
+        response = api_response_context.post("/api/ecom/auth/login", data = {"userEmail":"exampleokay@gmail.com", "userPassword":"Example@17"})
         assert response.ok
         print(response.json())
         responseBody= response.json()

@@ -15,8 +15,8 @@ def test_web_api(playwright: Playwright):
 
     #Login to the System
     page.goto("https://rahulshettyacademy.com/client/")
-    page.get_by_placeholder("email@example.com").fill("ansikha@gmail.com")
-    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_placeholder("email@example.com").fill("exampleokay@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Example@17")
     page.get_by_role('button', name= "Login").click()
     page.get_by_role('button', name= "ORDERS").click()
 
@@ -24,6 +24,3 @@ def test_web_api(playwright: Playwright):
     row.get_by_role("button", name= "View").click()
     expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
     context.close()
-
-
-
