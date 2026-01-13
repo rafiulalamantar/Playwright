@@ -6,6 +6,8 @@ from playwright.sync_api import Playwright
 from pageObjects.login_page import LoginPage
 from utils.apiBaseFramework import APIUtils
 
+#pytest --browser_name chrome -n 3 --tracing on --html=report.html
+
 with open('data/credential.json') as f:
     test_data = json.load(f)
     print(test_data)
