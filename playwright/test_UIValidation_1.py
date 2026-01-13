@@ -1,10 +1,11 @@
+import pytest
 from playwright.sync_api import Page, expect
+
 
 
 def test_UIValidationDynamicScript(page: Page):
     # iPhone X, Nokia Edge -> Verify 2 items are showing in Cart
-
-    page.goto("https://example.com")
+    page.goto("https://rahulshettyacademy.com/client/")
 
     page.get_by_label("Username:").fill("rahul")
     page.get_by_label("Password:").fill("learning")
