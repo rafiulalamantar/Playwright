@@ -1,5 +1,4 @@
 import pytest
-from pytest_playwright.pytest_playwright import browser_name
 
 
 @pytest.fixture(scope="session")
@@ -11,10 +10,13 @@ def pytest_addoption(parser):
         "--browser_name", action="store", default="chrome", help="browser selection"
     )
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def browserInstance(playwright,request):
     browser_name = request.config.getoption("browser_name")
-    browser = playwright.chromium.launch(headless=False)
+    if browser_name == "chrome":
+        browser = playwright.chromium.launch(headless=False)
+    elif browser_name == "firefox":
+        browser = playwright.firefox.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
     yield page
