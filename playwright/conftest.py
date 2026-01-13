@@ -6,7 +6,10 @@ def userCredentials(request):
 
 
 @pytest.fixture(scope="session")
-    def browserInstance(playwright):
-        browser = playwright.chromium.launch(headless=False)
-        context = browser.new_context()
-        page = context.new_page()
+def browserInstance(playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    yield page
+    context.close()
+    browser.close()
