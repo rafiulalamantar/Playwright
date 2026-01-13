@@ -1,8 +1,9 @@
+import pytest
 from playwright.sync_api import Playwright, expect
 
 from utils.apiBase import APIUtils
 
-
+@pytest.mark.smoke
 def test_web_api(playwright: Playwright):
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()

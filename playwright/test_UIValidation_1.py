@@ -2,7 +2,7 @@ import pytest
 from playwright.sync_api import Page, expect
 
 
-@pytest.mark.smoke
+
 def test_UIValidationDynamicScript(page: Page):
     # iPhone X, Nokia Edge -> Verify 2 items are showing in Cart
     page.goto("https://rahulshettyacademy.com/client/")
